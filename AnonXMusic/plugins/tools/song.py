@@ -8,7 +8,7 @@ from pyrogram.types import (InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaAudio,
                             InputMediaVideo, Message)
 
-from config import (BANNED_USERS, SONG_DOWNLOAD_DURATION,
+from config import (BANNED_USERS, DURATION_LIMIT,
                     DURATION_LIMIT_MIN)
 from strings import get_command
 from AnonX import YouTube, app
@@ -43,10 +43,10 @@ async def song_commad_private(client, message: Message, _):
         ) = await YouTube.details(url)
         if str(duration_min) == "None":
             return await mystic.edit_text(_["song_3"])
-        if int(duration_sec) > SONG_DOWNLOAD_DURATION_LIMIT:
+        if int(duration_sec) > DURATION_LIMIT_MIN:
             return await mystic.edit_text(
                 _["play_4"].format(
-                    SONG_DOWNLOAD_DURATION, duration_min
+                    DURATION_LIMIT, duration_min
                 )
             )
         buttons = song_markup(_, vidid)
@@ -73,9 +73,9 @@ async def song_commad_private(client, message: Message, _):
         return await mystic.edit_text(_["play_3"])
     if str(duration_min) == "None":
         return await mystic.edit_text(_["song_3"])
-    if int(duration_sec) > SONG_DOWNLOAD_DURATION_LIMIT:
+    if int(duration_sec) > DURATION_LIMIT_MIN:
         return await mystic.edit_text(
-            _["play_6"].format(SONG_DOWNLOAD_DURATION, duration_min)
+            _["play_6"].format(DURATION_LIMIT, duration_min)
         )
     buttons = song_markup(_, vidid)
     await mystic.delete()
