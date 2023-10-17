@@ -9,7 +9,7 @@ from pyrogram.types import (InlineKeyboardButton,
                             InputMediaVideo, Message)
 
 from config import (BANNED_USERS, SONG_DOWNLOAD_DURATION,
-                    SONG_DOWNLOAD_DURATION_LIMIT)
+                    DURATION_LIMIT_MIN)
 from strings import get_command
 from AnonX import YouTube, app
 from AnonX.utils.decorators.language import language, languageCB
